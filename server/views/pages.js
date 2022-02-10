@@ -35,7 +35,7 @@ const confirm = (link, successfull) => {
   const title = "Confirmation";
   const body = successfull
     ? `  <h3>Successful registration! 🎉</h3>
-  <h4>Your Link is ${link}</h4>
+  <h4>Your Link is https://tho19-url-shorten.herokuapp.com/${link}</h4>
   `
     : `
   <h3>Sorry! Something went wrong!!</h3>

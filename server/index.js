@@ -42,13 +42,15 @@ app.post("/", async (req, res) => {
   }
   
   const shortened = getLink(link);
-  const data = await links.create({ link, shortened });
-  
+
   try {
+    const data = await links.create({ link, shortened });
     return res.send(confirm(data._id, true));
+
   } catch (err) {
-    return res.send(confirm(data._id, false));
+    return res.send(confirm(shortened, true));
   }
+
 });
 
 app.get("/:short", async (req, res, next) => {
