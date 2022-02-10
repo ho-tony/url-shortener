@@ -3,6 +3,7 @@ const ShortUniqueId = require('short-unique-id');
 
 function getLink() {
   const uid = new ShortUniqueId({ length: 10 });
+  uid();
   return uid();
 }
 

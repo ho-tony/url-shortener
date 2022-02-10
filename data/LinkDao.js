@@ -7,17 +7,19 @@ class LinkDao {
   }
   
 
-  async create({ link, shortened }) {
-    if (link === undefined || shortened === "") {
+  async create(link, shorturl) {
+    if (link === undefined) {
       throw new ApiError(400, "Link cannot be empty!");
     }
-    
-    const linkObject = await Links.create({ link, shortened });
+    let linkObject = await Links.create({link, shorturl});
     return linkObject;
+  
   }
 
-  async read(id) {
-    const linkObject = Links.findById(id);
+  async read(code) {
+    let linkObject = await Links.findOne({
+      code
+  })
     return linkObject;
   }
   

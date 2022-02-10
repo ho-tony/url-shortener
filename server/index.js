@@ -1,13 +1,16 @@
 const express = require("express");
 const { getLink } = require("./util/key");
 const { index, confirm } = require("./views/pages");
-const validUrl = require('valid-url')
 
 const LinkDao = require("../data/LinkDao.js");
 const app = express();
 const port = process.env.PORT || 5050;
 const links = new LinkDao();
 const mongoose = require("mongoose");
+const ShortUniqueId = require('short-unique-id');
+let uid = new ShortUniqueId({ length: 10 });
+
+
 
 
 
@@ -41,9 +44,8 @@ app.post("/", async (req, res) => {
     link = 'http://' + link;
   }
   
-  const shortened = getLink();
-  const data = await links.create({ link, shortened });
-  return res.send(confirm(data._id, true));  
+  let data = await links.create(link, uid().toString());
+  return res.send(confirm(data.shorturl, true)).end();  
  
 });
 
@@ -56,6 +58,7 @@ app.get("/:short", async (req, res, next) => {
     return res.status(400).send({ message: "Invalid Link! " + link });
   }
   if (link != null || link != undefined) {
+
     return res.redirect(link.link);
   } else {
     return res.status(400).send({ message: "Invalid Link! " + link });
