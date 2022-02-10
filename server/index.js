@@ -43,13 +43,15 @@ app.post("/", async (req, res) => {
   
   const shortened = getLink(link);
 
-  try {
+  const listOfLinks = await links.readAll(link);
+  if (listOfLinks.length === 0 || listOfLinks === undefined) {
     const data = await links.create({ link, shortened });
-    return res.send(confirm(data._id, true));
-
-  } catch (err) {
-    return res.send(confirm(shortened, true));
+    return res.send(confirm(data._id, true));  
+  } else {
+    const foundLink = listOfLinks[0].link;
+    return res.send(confirm(foundLink._id, true));  
   }
+  
 
 });
 
@@ -59,9 +61,14 @@ app.get("/:short", async (req, res, next) => {
   try {
     link = await links.read(short);
   } catch (err) {
-    return res.status(400).send({ message: "Invalid Link!" + link });
+    return res.status(400).send({ message: "Invalid Link! " + link });
   }
-  return res.redirect(link.link);
+  if (link != null || link != undefined) {
+    return res.redirect(link.link);
+  } else {
+    return res.status(400).send({ message: "Invalid Link! " + link });
+  }
+
 });
 
 app.listen(port, () => {

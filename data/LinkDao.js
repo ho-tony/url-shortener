@@ -22,6 +22,16 @@ class LinkDao {
     return linkObject;
   }
 
+  async readAll(query = "") {
+    if (query !== "") {
+      const foundLink = await Links.find().or([{ link: query }, { _id: query }]);
+      return foundLink;
+    }
+
+    const foundLink = await Links.find({});
+    return foundLink;
+  }
+
 }
 
 module.exports = LinkDao;
