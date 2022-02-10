@@ -18,7 +18,7 @@ const URI = `mongodb+srv://tonyho:BDi3pVuMftow761Y@cluster0.dakpd.mongodb.net/my
 async function connect() {  
 try {
     await mongoose.connect(URI);
-    console.log("Connected to MongoDB!");
+    console.log("Connected to MongoDB on index.js!");
   } catch (err) {
     console.log(err);
   }
