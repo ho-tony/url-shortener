@@ -1,6 +1,4 @@
-# Clients API
-
-This repository contains a homework submission.
+# URL Shortener
 
 ```text
 JHED= THO19
