@@ -59,7 +59,7 @@ app.get("/:short", async (req, res, next) => {
   try {
     link = await links.read(short);
   } catch (err) {
-    return res.status(400).send({ message: "Invalid Link!" });
+    return res.status(400).send({ message: "Invalid Link!" + link });
   }
   return res.redirect(link.link);
 });
