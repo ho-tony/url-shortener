@@ -43,7 +43,7 @@ app.post("/", async (req, res) => {
   
   const shortened = getLink(link);
 
-  const listOfLinks = await links.readAll(link);
+  const listOfLinks = await links.readAll(shortened);
   if (listOfLinks.length === 0 || listOfLinks === undefined) {
     const data = await links.create({ link, shortened });
     return res.send(confirm(data._id, true));  
