@@ -1,5 +1,7 @@
 const Links = require("../model/Links");
 const ApiError = require("../model/ApiError");
+require("dotenv").config();
+
 
 class LinkDao {
   constructor() {
