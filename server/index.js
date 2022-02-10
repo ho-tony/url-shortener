@@ -41,18 +41,10 @@ app.post("/", async (req, res) => {
     link = 'http://' + link;
   }
   
-  const shortened = getLink(link);
-
-  const listOfLinks = await links.readAll(shortened);
-  if (listOfLinks.length === 0 || listOfLinks === undefined) {
-    const data = await links.create({ link, shortened });
-    return res.send(confirm(data._id, true));  
-  } else {
-    const foundLink = listOfLinks[0].link;
-    return res.send(confirm(foundLink._id, true));  
-  }
-  
-
+  const shortened = getLink();
+  const data = await links.create({ link, shortened });
+  return res.send(confirm(data._id, true));  
+ 
 });
 
 app.get("/:short", async (req, res, next) => {

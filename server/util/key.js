@@ -1,7 +1,9 @@
-const { v4: uuidv4 } = require('uuid');
+const ShortUniqueId = require('short-unique-id');
 
-function getLink(link) {
-  return uuidv4(link);
+
+function getLink() {
+  const uid = new ShortUniqueId({ length: 10 });
+  return uid();
 }
 
 function isValidHttpUrl(string) {
