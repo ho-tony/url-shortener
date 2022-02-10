@@ -45,7 +45,7 @@ app.post("/", async (req, res) => {
   }
   
   let data = await links.create(link, uid().toString());
-  return res.send(confirm(data.shorturl, true)).end();  
+  return res.send(confirm(data.shorturl, true));  
  
 });
 
