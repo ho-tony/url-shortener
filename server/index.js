@@ -1,5 +1,4 @@
 const express = require("express");
-const { getLink } = require("./util/key");
 const { index, confirm } = require("./views/pages");
 
 const LinkDao = require("../data/LinkDao.js");

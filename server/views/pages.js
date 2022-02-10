@@ -1,5 +1,3 @@
-// Do NOT make any changes to this file!
-
 const page = (title, body) => {
   return `
   <!DOCTYPE html>
